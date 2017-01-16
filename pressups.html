@@ -28,6 +28,7 @@ body {
 </style>
 <body>
 <div style="text-align:center; font-size:20px"> 2017 10k pressups project </div>
+<p id="demo" style="text-align:center; font-size:20px"></p>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 var width = 1280,
@@ -100,4 +101,16 @@ function monthPath(t0) {
       + "H" + (w1 + 1) * cellSize + "V" + 0
       + "H" + (w0 + 1) * cellSize + "Z";
 }
+
+d3.csv("https://raw.githubusercontent.com/Mognar/Calendars/master/pressups.csv", function(data) {
+    var landSum = data.reduce(function(sum, d) {
+  return sum + +d.Pressups;
+}, 0);
+
+{
+document.getElementById("demo").innerHTML = "pressups complete:" + landSum;
+
+}
+});
+
 </script>
